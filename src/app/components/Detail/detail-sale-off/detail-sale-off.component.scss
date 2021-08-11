@@ -1,0 +1,49 @@
+.all{
+    width: 85em;
+}
+.Anh{
+    min-width: 100%;
+    max-height: 250px;
+}
+.detail-KM{
+    // background-image: url("http://localhost:3000/AnhKM/default.jpg");
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.left20{
+    margin-left: 20px;
+}
+
+.top20{
+    margin-top: 20px;
+}
+
+.width200{
+    width: 200px;
+}
+
+.width30{
+    width: 30px;
+}
+.width100{
+    width: 100px;
+}
+
+.red-text{
+ color: #ff0000;
+ font-weight: bold;
+}
+
+.cac-san-pham-cung-loai{
+    display: flex;
+    margin-top: 30px;
+    overflow-x: auto;
+    
+}
+.item-san-pham-cung-loai{
+    border: #ff0000 solid 2px;
+}

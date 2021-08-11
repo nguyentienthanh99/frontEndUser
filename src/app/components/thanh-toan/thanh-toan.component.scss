@@ -1,0 +1,102 @@
+.content{
+    width: 1250px;
+    // margin-top: -120px;
+}
+
+.all{
+    // margin-top: 50px;
+    display: flex;
+    // align-items: center;
+    // width: 100%;
+}
+
+.title-input{
+    color: #ff0000;
+    font-size: 16px;
+}
+.thanh-ngang{
+    min-height: 2px;
+    background-color: #777777;
+    margin-top: 8px;
+
+}
+
+.thanh-ngang-1{
+    margin-top: 8px;
+    min-height: 1px;
+    background-color: #777777;
+}
+
+.header{
+    margin-top: 20px;
+}
+
+.thong-tin-user{
+    width: 60%;
+    
+}
+
+.don-hang{
+    width: 30%;
+    margin-left: 50px;
+}
+
+.flex{
+    display: flex;
+    // align-items: center;
+}
+
+.text-header{
+    // color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.thong-tin-giao-hang{
+    width: 60%;
+}
+
+.hoa-don{
+    width: 30%;
+    margin-left: 50px;
+}
+
+.hoa-don-1{
+    width: 70%;
+}
+
+.Ten{
+    width: 100%;
+}
+
+.Ten-1{
+    width: 40%;
+}
+
+.text-thanh-toan{
+    // margin-left: 200px;
+}
+
+.san-pham{
+    width: 300px;
+    
+}
+
+.Tong{
+    // width: 200px;
+   float: right;
+}
+
+.ThanhTien{
+    color: #ff0000;
+}
+
+.detail-sp{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+mat-radio-button{
+    width: 100%;
+}

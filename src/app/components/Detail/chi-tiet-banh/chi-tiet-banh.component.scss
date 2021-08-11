@@ -1,0 +1,94 @@
+.chi-tiet-banh{
+    display: flex;
+}
+
+.thong-tin-banh{
+    margin-left: 20px;
+}
+
+.ten-banh{
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.chi-tiet-thong-tin-banh{
+    margin-top: 20px;
+    color: #ff9100;
+    font-size: 18px;
+}
+
+.gia-tien{
+    font-weight: bold;
+    color: #ff0000;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.nguyen-lieu{
+    margin-top: 20px;
+    color: #ffffff;
+
+}
+
+.so-luong{
+    margin-top: 20px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    #chon-so-luong{
+        button{
+            min-width: 40px;
+        }
+        mat-icon{
+            font-size: 20px;
+            padding-top: 5px;
+        }
+        input{
+            height: 37px;
+            width: 40px;
+            padding-left: 30px;
+        }
+    }
+}
+
+.lien-he{
+    color: #ffffff;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-lien-he{
+    
+    mat-icon{
+        font-size: 40px;
+    }
+}
+
+.thong-tin-lien-he{
+    margin-left: 30px;
+    font-size: 20px;
+    div{
+        height: 30px;
+    }
+}
+
+.them-gio-hang{
+    margin-top: 20px;
+}
+
+.name{
+    min-width: 100px;
+}
+.danh-sach-size{
+    margin-left: 20px;
+}
+
+.cac-san-pham-cung-loai{
+    display: flex;
+    margin-top: 30px;
+    overflow-x: auto;
+    
+}

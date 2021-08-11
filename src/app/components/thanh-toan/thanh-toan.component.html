@@ -1,0 +1,237 @@
+<mat-card class="content" *ngIf="check_dh">
+    <div style="width: 100%;">
+        <div style="font-size: 20px;font-weight: bold;">
+            <mat-label>Thanh toán</mat-label>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="header thong-tin-user">
+            <div class="text-header">
+                <mat-label>Thông tin thanh toán</mat-label>
+            </div>
+            <div class="thanh-ngang">
+            
+            </div>
+        </div>
+        <div class="header don-hang">
+            <div class="text-header">
+                <mat-label>Đơn hàng của bạn</mat-label>
+            </div>
+            <div class="thanh-ngang">
+            
+            </div>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="thong-tin-giao-hang">
+            <div style="margin-top: 20px;width: 100%;">
+                <mat-form-field class="Ten">
+                    <mat-label class="title-input">Tên</mat-label>
+                    <input matInput placeholder="Tên bánh" [(ngModel)]="user.TenKH">
+                </mat-form-field>
+            </div>
+            <div style="margin-top: 20px;width: 100%;">
+                <mat-form-field class="Ten">
+                    <mat-label class="title-input">Số điện thoại</mat-label>
+                    <input matInput type="number" placeholder="Tên bánh" [(ngModel)]="user.SDT">
+                </mat-form-field>
+            </div>
+            <div style="margin-top: 20px;width: 100%;">
+                <mat-form-field class="Ten">
+                    <mat-label class="title-input">Email</mat-label>
+                    <input matInput type="email" placeholder="Tên bánh" [(ngModel)]="user.Email">
+                </mat-form-field>
+            </div>
+            <div style="margin-top: 20px;width: 100%;" class="flex">
+                <mat-form-field class="Ten-1">
+                    <mat-label class="title-input">Địa chỉ</mat-label>
+                    <input matInput placeholder="Tên bánh" [(ngModel)]="user.DiaChi">
+                </mat-form-field>
+                <mat-form-field class="Ten-1" style="margin-left: 10%;">
+                    <mat-label class="title-input">Phường/Xã</mat-label>
+                    <input matInput placeholder="Tên bánh" [(ngModel)]="user.Phuong">
+                </mat-form-field>
+                
+            </div>
+            <div style="margin-top: 20px;width: 100%;" class="flex">
+                <mat-form-field class="Ten-1">
+                    <mat-label class="title-input">Quận/Huyện</mat-label>
+                    <input matInput placeholder="Tên bánh" [(ngModel)]="user.Quan">
+                </mat-form-field>
+                <mat-form-field class="Ten-1" style="margin-left: 10%;">
+                    <mat-label class="title-input">Tỉnh/Thành phố</mat-label>
+                    <input matInput placeholder="Tên bánh" [(ngModel)]="user.ThanhPho">
+                </mat-form-field>
+            </div>
+            <div style="margin-top: 20px;width: 100%;">
+                <mat-form-field class="Ten">
+                    <mat-label class="title-input">Email</mat-label>
+                    <input matInput type="email" placeholder="Tên bánh" [(ngModel)]="GhiChu">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="hoa-don">
+            <div style="margin-top: 30px;width: 100%;" class="flex">
+                <div class="san-pham">
+                    <mat-label class="text-header">Sản phẩm</mat-label>
+                </div>
+                <div class="Tong">
+                    <mat-label class="text-header text-thanh-toan">Tổng</mat-label>
+                </div>
+            </div>
+            <div class="thanh-ngang-1">
+                
+            </div>
+            <div class="detail-sp flex" style="width: 100%;" *ngFor="let item of listGioHang">
+                <div style="display: flex;align-items: center;" class="san-pham">
+                    <div style="width: 200px;">
+                        <mat-label>{{item.TenBanh}}</mat-label>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div>
+                        <mat-label style="padding-right: 20px;">x{{item.SL}}</mat-label>
+                    </div>
+                </div>
+                <div style="width: 100px;">
+                    <mat-label class="text-thanh-toan Tong">{{item.TongTien | DonVi}}</mat-label>
+                </div>
+            </div>
+            <div class="thanh-ngang-1">
+                
+            </div>
+            <div class="detail-sp flex" style="width: 100%;">
+                <div style="display: flex;align-items: center;" class="san-pham">
+                    <div style="width: 200px;">
+                        Thành tiền
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div>
+                        
+                    </div>
+                </div>
+                <div style="width: 100px;">
+                    <mat-label class="text-thanh-toan Tong ThanhTien">{{thanhToan | DonVi}}</mat-label>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="selected" (ngModelChange)="select($event)">
+                    <mat-radio-button value="Chuyển khoản ngân hàng">Chuyển khoản ngân hàng</mat-radio-button>
+                    <div *ngIf="!check_type_1">
+                        <mat-label style="color: #ff0000;">Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc xác nhận và giao sau khi tiền đã chuyển.</mat-label><br>
+                        <mat-label style="color: #ff0000;">Vui lòng chuyển khoản theo thông tin bên dưới.</mat-label><br>
+                        <mat-label style="color: #ff0000;">Ngân hàng : Viettinbank</mat-label><br>
+                        <mat-label style="color: #ff0000;">Chi nhánh : Ba Đình - Hà Nội</mat-label><br>
+                        <mat-label style="color: #ff0000;">STK : 105867443656</mat-label><br>
+                        <mat-label style="color: #ff0000;">Tên : NGUYEN TIEN THANH</mat-label>
+                    </div>
+                    <mat-radio-button value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</mat-radio-button>
+                    <mat-label *ngIf="!check_type_2" style="color: #ff0000;">Thực hiện thanh toán khi nhận được hàng. Vui lòng nhập đúng số điện thoại chúng tôi sẽ liên hệ để xác nhận đơn hàng của bạn. Đơn hàng sẽ đươc giao sau khi xác nhận.</mat-label>
+                </mat-radio-group>
+            </div>
+            <div class="detail-sp flex" style="width: 100%;">
+                <button style="width: 100%;" mat-raised-button color="primary" [disabled] = "disable_select" (click)="datHang(user.TenKH,user.SDT,user.Email,user.DiaChi,user.Quan,user.Phuong,user.ThanhPho)">Đặt hàng</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+
+<mat-card class="content flex" style="display: flex;align-items: center;" *ngIf="!check_dh">
+    <div style="width: 50%;">
+        <div style="font-size: 20px;font-weight: bold;margin-top: 100px;">
+            <mat-label>Chi tiết đơn hàng</mat-label>
+        </div>
+        <div class="hoa-don-1">
+            <div style="margin-top: 30px;width: 100%;" class="flex">
+                <div class="san-pham">
+                    <mat-label class="text-header">Sản phẩm</mat-label>
+                </div>
+                <div class="Tong">
+                    <mat-label class="text-header text-thanh-toan">Tổng</mat-label>
+                </div>
+            </div>
+            <div class="thanh-ngang-1">
+                
+            </div>
+            <div class="detail-sp flex" style="width: 100%;" *ngFor="let item of listGioHang">
+                <div style="display: flex;align-items: center;" class="san-pham">
+                    <div style="width: 200px;">
+                        <mat-label>{{item.TenBanh}}</mat-label>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div>
+                        <mat-label style="padding-right: 20px;">x{{item.SL}}</mat-label>
+                    </div>
+                </div>
+                <div style="width: 100px;">
+                    <mat-label class="text-thanh-toan Tong">{{item.TongTien | DonVi}}</mat-label>
+                </div>
+            </div>
+            <div class="thanh-ngang-1">
+                
+            </div>
+            <div class="detail-sp flex" style="width: 100%;">
+                <div style="display: flex;align-items: center;" class="san-pham">
+                    <div style="width: 200px;">
+                        Thành tiền
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div>
+                        
+                    </div>
+                </div>
+                <div style="width: 100px;">
+                    <mat-label class="text-thanh-toan Tong ThanhTien">{{thanhToan | DonVi}}</mat-label>
+                </div>
+            </div>
+            <div class="thanh-ngang-1">
+                
+            </div>
+            <div style="margin-top: 20px;" >
+                Địa chỉ giao hàng : <mat-label>{{user.DiaChi}},</mat-label>&nbsp;<mat-label>{{user.Phuong}},</mat-label>&nbsp;<mat-label>{{user.Quan}},</mat-label>&nbsp;<mat-label>{{user.ThanhPho}}</mat-label>
+            </div>
+            <div style="margin-top: 20px;" *ngIf="!kieuThanhToan1">
+                <mat-label style="color: #ff0000;">Vui lòng chuyển khoản theo thông tin bên dưới :</mat-label><br>
+                <mat-label style="color: #ff0000;">Ngân hàng : Viettinbank</mat-label><br>
+                <mat-label style="color: #ff0000;">Chi nhánh : Ba Đình - Hà Nội</mat-label><br>
+                <mat-label style="color: #ff0000;">STK : 105867443656</mat-label><br>
+                <mat-label style="color: #ff0000;">Tên : NGUYEN TIEN THANH</mat-label>
+            </div>
+            <div class="detail-sp flex" style="width: 100%;">
+                <button style="width: 100%;" mat-raised-button color="primary" [disabled] = "disable_select" (click)="goToTrangChu()">Quay lại trang chủ</button>
+            </div>
+        </div>
+    </div>
+    <div style="width: 50%;">
+        <div style="font-size: 20px;font-weight: bold;margin-top: 20px;">
+            <mat-label>Cảm ơn bạn đã mua bánh tại TCake.VN !</mat-label><br>
+            
+        </div>
+        <div style="margin-top: 30px;">
+            <div class="flex">
+                <div style="width: 200px;">
+                    <mat-label>Mã đơn hàng : </mat-label>
+                </div>
+                <div>
+                    <mat-label>: #{{MaHDMaxAdd}}</mat-label>
+                </div>
+            </div>
+            <div class="flex">
+                <div style="width: 200px;">
+                    <mat-label>Ngày tạo </mat-label>
+                </div>
+                <div>
+                    <mat-label> : {{now.getDate()}} Tháng {{now.getMonth()}}, {{now.getFullYear()}}</mat-label>
+                </div>
+            </div>
+            <div class="flex">
+                <div style="width: 200px;">
+                    <mat-label>Phương thức thanh toán </mat-label>
+                </div>
+                <div>
+                    <mat-label> : {{selected}}</mat-label>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

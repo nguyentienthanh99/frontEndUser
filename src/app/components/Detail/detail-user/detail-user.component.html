@@ -1,0 +1,285 @@
+<div class="all">
+    <div class= "flex">
+        <div >
+            <img class="avt" [src]="khachHang.Anh" alt="">
+        </div>
+        <div class="text" style="color: rgb(253, 253, 253);">
+            <mat-label>{{khachHang.TenKH}} #{{khachHang.MaKH}}</mat-label>
+        </div>
+    </div>
+    <mat-card class="info">
+        <div *ngIf="!checkChinhSua && !checkDoiPass">
+            <div class="flex top20px">
+                <div class="wiwth100px bold">
+                    <mat-label>Ngày sinh</mat-label>
+                </div>
+                <div class="wiwth50px">
+                    <mat-label>:</mat-label>
+                </div>
+                <div>
+                    <!-- <mat-label>{{khachHang.NgaySinh}}</mat-label> -->
+                    <mat-label>{{khachHang.NgaySinh | subDate}}</mat-label>
+                </div>
+            </div>
+            <div class="flex top20px">
+                <div class="wiwth100px bold">
+                    <mat-label>Giới tính</mat-label>
+                </div>
+                <div class="wiwth50px">
+                    <mat-label>:</mat-label>
+                </div>
+                <div>
+                    <mat-label>{{khachHang.GioiTinh}}</mat-label>
+                </div>
+            </div>
+            <div class="flex top20px">
+                <div class="wiwth100px bold">
+                    <mat-label>SĐT</mat-label>
+                </div>
+                <div class="wiwth50px">
+                    <mat-label>:</mat-label>
+                </div>
+                <div>
+                    <mat-label>{{khachHang.SDT}}</mat-label>
+                </div>
+            </div>
+            <div class="flex top20px">
+                <div class="wiwth100px bold">
+                    <mat-label>Email</mat-label>
+                </div>
+                <div class="wiwth50px">
+                    <mat-label>:</mat-label>
+                </div>
+                <div>
+                    <mat-label>{{khachHang.Email}}</mat-label>
+                </div>
+            </div>
+            <div class="flex top20px">
+                <div class="wiwth100px bold">
+                    <mat-label>Địa chỉ</mat-label>
+                </div>
+                <div class="wiwth50px">
+                    <mat-label>:</mat-label>
+                </div>
+                <div>
+                    <mat-label>{{khachHang.DiaChi}},{{khachHang.Phuong}},{{khachHang.Quan}},{{khachHang.ThanhPho}}</mat-label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="checkChinhSua">
+            <div class="top20px">
+                <mat-label class="title-input">Ảnh</mat-label><br>
+                <input type="file" (change)="addImg($event)">
+            </div>
+            <div class="top20px">
+                <mat-form-field>
+                    <mat-label class="title-input">Ngày sinh</mat-label>
+                    <input matInput [matDatepicker]="picker" (dateChange)="getdate($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <!-- <input type="date" matInput placeholder="Ngày sinh" [(ngModel)]="khachHang.NgaySinh" (ngModelChange)="demo($event)"> -->
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Gioi tính</mat-label>
+                    <mat-select placeholder="Kích thước" (selectionChange)="changeClientGT($event.value)" [(ngModel)]="khachHang.GioiTinh">
+                        <mat-option value="Nam">Nam</mat-option>
+                        <mat-option value="Nữ">Nữ</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">SĐT</mat-label>
+                    <input type="number" matInput placeholder="Số điện thoại" [(ngModel)]="khachHang.SDT">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Email</mat-label>
+                    <input type="email" matInput placeholder="Email" [(ngModel)]="khachHang.Email" [formControl]="EmptyEmail" required>
+                    <mat-error *ngIf="EmptyEmail.invalid">{{mesErr}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Địa chỉ (số nhà/nghách/ngõ)</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="khachHang.DiaChi">
+                </mat-form-field>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Phường</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="khachHang.Phuong">
+                </mat-form-field>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Quận</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="khachHang.Quan">
+                </mat-form-field>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Thành phố</mat-label>
+                    <input matInput placeholder="Email" [(ngModel)]="khachHang.ThanhPho">
+                </mat-form-field>
+            </div>
+        </div>
+        <div *ngIf="checkDoiPass">
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Mật khẩu cũ</mat-label>
+                    <input [type]="typeInput" matInput placeholder="Mật khẩu cũ" [(ngModel)]="passCu" (ngModelChange)="checkNhap($event)">
+                    <!-- <mat-error *ngIf="checkPassCu">{{mesErr}}</mat-error> -->
+                    <mat-icon *ngIf="itemCheckPass" (click)="showPass()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                    <mat-icon *ngIf="!itemCheckPass" (click)="showPass()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Mật khẩu mới</mat-label>
+                    <input [type]="typeInput1" matInput placeholder="Mật khẩu mới" [(ngModel)]="passMoi" (ngModelChange)="checkNhap1($event)">
+                    <mat-icon *ngIf="itemCheckPass1" (click)="showPass1()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                    <mat-icon *ngIf="!itemCheckPass1" (click)="showPass1()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="fomr">
+                    <mat-label class="title-input">Nhập lại mật khẩu</mat-label>
+                    <input [type]="typeInput2" matInput placeholder="Nhập lại mật khẩu mới" [(ngModel)]="checkLaiPass" (ngModelChange)="checkNhap2($event)">
+                    <!-- <mat-error *ngIf="checkPassMoi">{{mesErr}}</mat-error> -->
+                    <mat-icon *ngIf="itemCheckPass2" (click)="showPass2()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                    <mat-icon *ngIf="!itemCheckPass2" (click)="showPass2()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="top20px flex" *ngIf="!checkChinhSua && !checkDoiPass">
+            <button mat-raised-button color="primary" (click)="chinhSua()">Chỉnh sửa</button>
+            <button mat-raised-button color="primary" (click)="doiPass()" class="left20px">Đổi mật khẩu</button>
+        </div>
+        <div *ngIf="checkChinhSua">
+            <button mat-raised-button color="primary" (click)="xacNhanChinhSua(ngaySinh)"><mat-icon>done</mat-icon></button>
+            <button mat-raised-button color="warn" (click)="close()" class="left20px"><mat-icon>close</mat-icon></button>
+        </div>
+        <div *ngIf="checkDoiPass">
+            <button mat-raised-button color="primary" (click)="checkDoiMK()" *ngIf="!disabledPass && !disabledPass1 && !disabledPass2"><mat-icon>done</mat-icon></button>
+            <button mat-raised-button color="warn" (click)="close()" class="left20px"><mat-icon>close</mat-icon></button>
+        </div>
+    </mat-card>
+
+    <div class="top20px">
+        <mat-tab-group color="primary" backgroundColor="primary">
+            <mat-tab label="Đơn hàng đang giao">
+                <table mat-table [dataSource]="billGiaoHang" class="mat-elevation-z8">
+                    <ng-container matColumnDef="MaHD">
+                      <th mat-header-cell *matHeaderCellDef> Mã hóa đơn </th>
+                      <td mat-cell *matCellDef="let element"> {{element.MaHD}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="NgayTao">
+                      <th mat-header-cell *matHeaderCellDef> Ngày tạo </th>
+                      <td mat-cell *matCellDef="let element"> {{element.NgayTaoHD | subDate}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="ThanhTien">
+                      <th mat-header-cell *matHeaderCellDef> Thành tiền </th>
+                      <td mat-cell *matCellDef="let element"> {{element.ThanhTien | DonVi}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ListCT">
+                        <th mat-header-cell *matHeaderCellDef> Danh sách sản phẩm </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngFor="let itemCT of element.CtHD" class="flex">
+                                <div class="wiwth200px">
+                                    <mat-label>{{itemCT.TenBanh}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>X{{itemCT.SL}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>{{itemCT.TenKT}}</mat-label>
+                                </div>
+                            </div>
+                        </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+            </mat-tab>
+            <mat-tab label="Đơn hàng chờ xác nhận">
+                <table mat-table [dataSource]="billXacThuc" class="mat-elevation-z8">
+                    <ng-container matColumnDef="MaHD">
+                      <th mat-header-cell *matHeaderCellDef> Mã hóa đơn </th>
+                      <td mat-cell *matCellDef="let element"> {{element.MaHD}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="NgayTao">
+                      <th mat-header-cell *matHeaderCellDef> Ngày tạo </th>
+                      <td mat-cell *matCellDef="let element"> {{element.NgayTaoHD | subDate}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="ThanhTien">
+                      <th mat-header-cell *matHeaderCellDef> Thành tiền </th>
+                      <td mat-cell *matCellDef="let element"> {{element.ThanhTien | DonVi}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ListCT">
+                        <th mat-header-cell *matHeaderCellDef> Danh sách sản phẩm </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngFor="let itemCT of element.CtHD" class="flex">
+                                <div class="wiwth200px">
+                                    <mat-label>{{itemCT.TenBanh}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>X{{itemCT.SL}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>{{itemCT.TenKT}}</mat-label>
+                                </div>
+                            </div>
+                        </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+            </mat-tab>
+            <mat-tab label="Lịch sử mua hàng">
+                <table mat-table [dataSource]="billLichSu" class="mat-elevation-z8">
+                    <ng-container matColumnDef="MaHD">
+                      <th mat-header-cell *matHeaderCellDef> Mã hóa đơn </th>
+                      <td mat-cell *matCellDef="let element"> {{element.MaHD}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="NgayTao">
+                      <th mat-header-cell *matHeaderCellDef> Ngày tạo </th>
+                      <td mat-cell *matCellDef="let element"> {{element.NgayTaoHD | subDate}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="ThanhTien">
+                      <th mat-header-cell *matHeaderCellDef> Thành tiền </th>
+                      <td mat-cell *matCellDef="let element"> {{element.ThanhTien | DonVi}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ListCT">
+                        <th mat-header-cell *matHeaderCellDef> Danh sách sản phẩm </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngFor="let itemCT of element.CtHD" class="flex">
+                                <div class="wiwth200px">
+                                    <mat-label>{{itemCT.TenBanh}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>X{{itemCT.SL}}</mat-label>
+                                </div>
+                                <div class="wiwth30px">
+                                    <mat-label>{{itemCT.TenKT}}</mat-label>
+                                </div>
+                            </div>
+                        </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+      
+</div>

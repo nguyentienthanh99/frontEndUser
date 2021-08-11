@@ -1,0 +1,82 @@
+<div style="width: 85em;margin-top: 120px;">
+    <div class="chi-tiet-banh">
+        <div>
+            <img [src]="itemBanh.AnhSP" alt="" style="width: 500px;">
+        </div>
+        <div class="thong-tin-banh">
+            <div class="ten-banh">
+                <mat-label >
+                    {{itemBanh.TenBanh}}
+                </mat-label>
+            </div>
+            <div class="chi-tiet-thong-tin-banh">
+                <div>
+                    <mat-label>Mã bánh : </mat-label><mat-label>{{itemBanh.MaBanh}}</mat-label>
+                </div>
+                <div class="nguyen-lieu">
+                    <mat-label>Nhà cung cấp : </mat-label>
+                    <mat-label>{{itemBanh.TenNCC}}</mat-label>
+                </div>
+                <div *ngIf="checkClickGia">
+                    <div class="gia-tien" >
+                        <mat-label>{{itemBanh.GiaMin | DonVi}} <mat-label *ngIf="itemBanh.checkgia">- {{itemBanh.GiaMax | DonVi}}</mat-label></mat-label>
+                    </div>
+                </div>
+                <div *ngIf="!checkClickGia" class="gia-tien">
+                    <mat-label>{{giaTienKT | DonVi}}</mat-label>
+                </div>
+                <div class="nguyen-lieu">
+                    <mat-label>Nguyên liệu : </mat-label>
+                    <mat-label>{{itemBanh.MoTa}}</mat-label>
+                </div>
+                <div class="nguyen-lieu">
+                    <mat-label class="name">Size :</mat-label>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="danh-sach-size">
+                        <mat-button-toggle [value]="item.MaKT" *ngFor="let item of listTenKTBanh" (click)="checkGia(item.MaKT)" (click)="showMaKTBanh(item.MaKT)">{{item.TenKT}}</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div class="so-luong">
+                    <mat-label class="name">Số lượng :</mat-label>
+                    <div id="chon-so-luong">
+                        <button mat-raised-button [disabled]="checkClickGia" style="min-width: 30px;height: 40px;" (click)="remove()">	<mat-icon>remove</mat-icon></button>
+                        <input type="number" matInput disabled [(ngModel)]="SL">
+                        <button mat-raised-button [disabled]="checkClickGia" style="min-width: 30px;height: 40px;" (click)="sub()">	<mat-icon>add</mat-icon></button>
+                    </div>
+                </div>
+                <div class="them-gio-hang">
+                    <button mat-raised-button color="warn" [disabled]="checkClickGia" (click)="ThemVaoGioHang()">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+                
+            </div>
+            <mat-divider style="background-color: #ffffff;margin-top: 20px;"></mat-divider>
+            <div class="lien-he">
+                <div class="icon-lien-he">
+                    <mat-icon> call</mat-icon>
+                </div>
+                <div class="thong-tin-lien-he">
+                    <div>
+                        <mat-label>LIÊN HỆ ĐỂ ĐẶT HÀNG</mat-label>
+                    </div>
+                    <div>
+                        <mat-label>0389843092</mat-label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-divider style="background-color: #ffffff;"></mat-divider>
+    <div style="color: #ff4040;font-size: 32px;font-weight: bold;margin-top: 30px;display: flex;align-items: center;">
+        <mat-label>Sản phẩm tưởng tự </mat-label>
+    </div>
+    <div class="cac-san-pham-cung-loai">
+        
+        <div class="item-san-pham-cung-loai" *ngFor="let item of listBanhCungLoai" (click)="goToDetail(item.MaBanh)">
+            <div>
+                <img [src]="item.AnhSP" alt="" style="width: 300px;height: 300px;">
+            </div>
+            <div style="display: flex;justify-content: center;color: #ffffff;font-size: 16px;font-weight: bold;">
+                <mat-label>{{item.TenBanh}}</mat-label> 
+            </div>
+        </div>
+    </div>
+</div>

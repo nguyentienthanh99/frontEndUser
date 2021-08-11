@@ -1,0 +1,58 @@
+<div class="all-header">
+    <div class="top-header">
+        <div style="margin-left: 20px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <mat-label>Chào mừng bạn đến với TCake !</mat-label>
+        </div>
+        <div class="flex list-icon">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-instagram-square"></i>
+            <i class="fab fa-tiktok"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fas fa-envelope"></i>
+        </div>
+    </div>
+    <div class="header">
+        <div class="logo">
+            <div>
+            <div>
+                <mat-label id="name">TCake.Vn</mat-label>
+            </div>
+            <div>
+                <mat-label id="slogan">Bánh cho mọi nhà</mat-label> 
+            </div>
+            </div>
+        </div>
+        <div class="search">
+            <input type="text" matInput style="width: 100%;height: 30px;" placeholder="Tìm kiếm sản phẩm">
+            <button mat-raised-button color="warn" style="min-width: 30px;height: 40px;">	<mat-icon>search</mat-icon></button>
+        </div>
+        <div class="list-menu">
+            
+            <div style="color: #ffffff;display: flex;align-items: center;margin-right: 30px;cursor:pointer;">
+                <mat-icon style="font-size: 40px;" routerLink="login">person</mat-icon>
+                <span style="margin-top: 15px;margin-left: 20px;" routerLink="login">Đăng nhập</span>
+            </div>
+            <div style="color: #ffffff;display: flex;align-items: center;margin-right: 30px;cursor:pointer;">
+                <mat-icon [matBadge]="DemSLBanh" matBadgeColor="warn" style="font-size: 40px;" (click)="goToGioHang()">shopping_cart</mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <div style="color: #ffffff;">
+            <button mat-button routerLink="trang-chu">Trang chủ</button>
+        </div>
+        <div style="color: #ffffff;">
+            <button mat-button [matMenuTriggerFor]="menu">Sản phẩm</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngFor="let item of LoaiBanhs">{{item.TenLoaiBanh | upLow}}</button>
+            </mat-menu>
+        </div>
+        <div style="color: #ffffff;">
+            <button mat-button [matMenuTriggerFor]="menuSK" >Sự kiện</button>
+            <mat-menu #menuSK="matMenu">
+                <button mat-menu-item *ngFor="let item of KhyenMais">{{item.TieuDe | upLow}}</button>
+            </mat-menu>
+        </div>
+    </div>
+
+</div>

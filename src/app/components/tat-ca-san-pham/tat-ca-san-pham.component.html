@@ -1,0 +1,42 @@
+<div class="all">
+      <mat-grid-list cols="3" *ngIf="!checkLoaiBanh">
+        <mat-grid-tile *ngFor="let item of listBanh |  paginate: { itemsPerPage: 9, currentPage: page }" md-colspan-sm="1" md-colspan-xs="1" style="border-style: solid; border-width: 2px;border-color: #ff5757;" (click)="goToDetail(item.MaBanh)">
+            <div style="width: 100%;height: 100%;">
+                    <img [src]="item.AnhSP" alt="" style="border-radius: 8px;width: 100%;height: 75%;border: 10px;" >
+                <div style="background-color: #fcfcfc;height: 25%;">
+                    <div class="ten-banh">
+                        {{item.TenBanh | upText}}
+                    </div>
+                    <div  class="Tien">
+                        <mat-label>{{item.GiaMin | DonVi}} <mat-label *ngIf="item.checkgia">- {{item.GiaMax | DonVi}}</mat-label></mat-label>
+                    </div>
+                    <!-- <div *ngIf="!checkGia" class="Tien">
+                        {{item.GiaMin | DonVi}}
+                    </div> -->
+                    <div class="them-vao-gio-hang">
+                        <button mat-raised-button color="warn" >Mua hàng</button>
+                    </div>
+                </div>
+            </div>
+            
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+      <div *ngIf="checkLoaiBanh" style="margin-top: 200px;display: flex;justify-content: center;">
+        <mat-label style="font-weight: bold;color: #dbdbdb;font-size: 30px;">Loại sản phẩm này đã hết !</mat-label>
+      </div>
+      <div *ngIf="checkBanhSearch" style="margin-top: 200px;display: flex;justify-content: center;">
+        <mat-label style="font-weight: bold;color: #dbdbdb;font-size: 30px;">Không có sản phẩm này !</mat-label>
+      </div>
+      <div *ngIf="checkNCC" style="margin-top: 200px;display: flex;justify-content: center;">
+        <mat-label style="font-weight: bold;color: #dbdbdb;font-size: 30px;">Không có sản phẩm của nhà cung cấp này !</mat-label>
+      </div>
+      <div style="display: flex;justify-content: center;background-color: #dbdbdb;" *ngIf="disPage">
+        <pagination-controls
+            previousLabel="Trang trước"
+            nextLabel="Trang sau"
+            [responsive]="true"
+            (pageChange)="page = $event"
+          ></pagination-controls>
+      </div>
+</div>

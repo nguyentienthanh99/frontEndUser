@@ -1,0 +1,121 @@
+.gio-hang{
+    margin-top: 50px;
+    min-height: 550px;
+    display: flex;
+}
+
+.list-banh{
+    width: 100%;
+    margin-top: 20px;
+    // border-right: 2px solid #777777;
+}
+
+.list-khong-banh{
+    width: 1112px;
+    margin-top: 20px;
+    span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #c5c5c5;
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+.thanh-tien{
+    width: 30%;
+    margin-top: 20px;
+    float: right;
+}
+
+.header{
+    display: flex;
+    // padding-left: 20px;
+}
+
+.title{
+    width: 150px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.title-nho{
+    width: 100px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.thanh-ngang{
+    min-height: 2px;
+    background-color: #777777;
+    // margin-left: 30px;
+}
+
+.thanh-ngang-tt{
+    min-height: 2px;
+    background-color: #777777;
+    width: 200px;
+    // margin-left: 10px;
+}
+
+.title-san-pham{
+    width: 400px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #313131;
+}
+
+.san-pham{
+    display: flex;
+    // margin-left: 30px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.content-san-pham{
+    display: flex;
+    align-items: center;
+    width: 400px;
+}
+
+.content{
+    width: 150px;
+    
+}
+
+.content-nho{
+    width: 100px;
+    
+}
+
+#chon-so-luong{
+    display: flex;
+
+    mat-icon{
+        font-size: 12px;
+        padding-top: 5px;
+    }
+    input{
+        height: 25px;
+        width: 30px;
+        padding-left: 20px;
+    }
+}
+
+.sub-gia{
+    min-width: 35px;
+    height: 30px;
+    cursor:pointer;
+}
+
+.xoa:hover{
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.color-white{
+    color: #ffffff;
+}

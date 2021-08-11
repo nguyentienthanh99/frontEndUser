@@ -1,0 +1,14 @@
+.all{
+    width: auto;
+        display: grid;
+        overflow-y: none;
+        overflow-x: none;
+        z-index: 1000;
+        // background-image: url("../assets/default/backgroundWeb.jpg");
+        background-image: url("https://candangstudio.com/wp-content/uploads/2020/08/50194097817_f20c944307_o.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        min-height: 735px;
+}

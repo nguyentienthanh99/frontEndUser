@@ -1,0 +1,146 @@
+<div style="display: flex;align-items: center;justify-content: center;">
+    <mat-card style="width: 500px;height: 300px;margin-top: 110px;" *ngIf="checkDangKy">
+        <mat-card-header>
+            <mat-card-title>Đăng nhập</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="display: flex;justify-content: center;">
+            <div>
+                <div>
+                    <mat-form-field style="width: 400px;padding-top: 0px;margin-top: 0px;">
+                        <span matPrefix style="display: flex;align-items: center;justify-content: center;width: 30px;height: 30px;"><mat-icon >person</mat-icon>&nbsp;</span>
+                        <mat-label class="title-input">Tên đăng nhập</mat-label>
+                        <input matInput placeholder="Tên đăng nhập" [(ngModel)]="users.TenKH" [formControl]="Empty" required>
+                        <mat-error *ngIf="Empty.invalid">Chưa nhập tên</mat-error>
+                        <mat-error *ngIf="checkten">Sai tên</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field style="width: 400px;">
+                        <span matPrefix style="display: flex;align-items: center;"><mat-icon matPrefix>lock</mat-icon>&nbsp;</span>
+                        <mat-label class="title-input">Mật khẩu</mat-label>
+                        <input [type]="typeInput" matInput placeholder="Mật khẩu" [(ngModel)]="users.MatKhau">
+                        <mat-error>Sai mật khẩu</mat-error>
+                        <mat-icon *ngIf="itemCheckPass" (click)="checkPas()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                        <mat-icon *ngIf="!itemCheckPass" (click)="checkPas()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;margin-top: 10px;">
+                    <button mat-raised-button color="primary" style="width: 300px;" (click)="getLogin(users.TenKH,users.MatKhau)">Đăng nhập</button>
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;margin-top: 30px;">
+                    <span>hoặc</span>
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;margin-top: 30px;">
+                    <button mat-raised-button color="warn" style="width: 180px;" (click)="DangKy()">Tạo tài khoản</button>
+                </div>
+            </div>
+        </mat-card-content>
+       
+    </mat-card>
+
+    <!-- <mat-card style="width: 500px;margin-top: 110px;" *ngIf="!checkDangKy">
+        <mat-card-header>
+            <mat-card-title>Tạo tài khoản</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="display: flex;justify-content: center;">
+            <div>
+                <div>
+                    <mat-form-field style="width: 400px;padding-top: 0px;margin-top: 0px;">
+                        <mat-label class="title-input">Tên đăng nhập</mat-label>
+                        <input matInput placeholder="Tên đăng nhập" [(ngModel)]="usersDK.TenKH" [formControl]="Empty" required>
+                        <mat-error *ngIf="Empty.invalid">Chưa nhập tên</mat-error>
+                        <mat-error *ngIf="checkten">Sai tên</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field style="width: 400px;">
+                        <mat-label class="title-input">Mật khẩu</mat-label>
+                        <input [type]="typeInput" matInput placeholder="Mật khẩu" [(ngModel)]="usersDK.MatKhau" [formControl]="EmptyMatKhau" required>
+                        <mat-error *ngIf="EmptyMatKhau.invalid"><p>Chưa nhập mật khẩu</p></mat-error>
+                        <mat-error *ngIf="EmptyMatKhau.invalid && checkpassnhap">Nhập lại mật khẩu không khớp</mat-error>
+                        <mat-icon *ngIf="itemCheckPass" (click)="checkPas()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                        <mat-icon *ngIf="!itemCheckPass" (click)="checkPas()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field style="width: 400px;">
+                        <mat-label class="title-input">Nhập lại mật khẩu</mat-label>
+                        <input [type]="typeInput1" matInput placeholder="Mật khẩu" [(ngModel)]="nhapLaiMatKhau" [formControl]="EmptyNhapLaiMatKhau" required>
+                        <mat-error *ngIf="EmptyNhapLaiMatKhau.invalid">Chưa nhập lại mật khẩu</mat-error>
+                        <mat-icon *ngIf="itemCheckPass1" (click)="checkPas1()" matSuffix style="cursor:pointer;">visibility_off</mat-icon>
+                        <mat-icon *ngIf="!itemCheckPass1" (click)="checkPas1()" matSuffix style="cursor:pointer;">remove_red_eye</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="top20px flex">
+                    <div>
+                        <mat-form-field>
+                            <mat-label class="title-input">Ngày sinh</mat-label>
+                            <input matInput [matDatepicker]="picker" (ngModelChange)="getNgaySinh($event)" [(ngModel)]="usersDK.NgaySinh">
+                            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="left20px">
+                        <mat-form-field class="fomr">
+                            <mat-label class="title-input">Giới tính</mat-label>
+                            <mat-select placeholder="Kích thước" (selectionChange)="changeClientGT($event.value)" [(ngModel)]="users.GioiTinh">
+                                <mat-option value="Nam">Nam</mat-option>
+                                <mat-option value="Nữ">Nữ</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <mat-form-field class="fomr width400px">
+                        <mat-label class="title-input">SĐT</mat-label>
+                        <input type="number" matInput placeholder="Số điện thoại" [(ngModel)]="usersDK.SDT" [formControl]="EmptySDT" required>
+                        <mat-error *ngIf="EmptySDT.invalid">Chưa nhập số điện thoại</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="fomr width400px">
+                        <mat-label class="title-input">Email</mat-label>
+                        <input type="email" matInput placeholder="Email" [(ngModel)]="usersDK.Email" [formControl]="EmptyEmail" required>
+                        <mat-error *ngIf="EmptyEmail.errors?.required">Bạn chưa nhập email</mat-error>
+                        <mat-error *ngIf="EmptyEmail.invalid">{{mesErr}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <div class="flex">
+                        <div>
+                            <mat-form-field class="fomr">
+                                <mat-label class="title-input">Địa chỉ (số nhà/nghách/ngõ)</mat-label>
+                                <input matInput placeholder="Email" [(ngModel)]="usersDK.DiaChi">
+                            </mat-form-field>
+                        </div>
+                        <div class="left20px">
+                            <mat-form-field class="fomr">
+                                <mat-label class="title-input">Phường</mat-label>
+                                <input matInput placeholder="Email" [(ngModel)]="usersDK.Phuong">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <mat-form-field class="fomr">
+                                <mat-label class="title-input">Quận</mat-label>
+                                <input matInput placeholder="Email" [(ngModel)]="usersDK.Quan">
+                            </mat-form-field>
+                        </div>
+                        <div class="left20px">
+                            <mat-form-field class="fomr">
+                                <mat-label class="title-input">Thành phố</mat-label>
+                                <input matInput placeholder="Email" [(ngModel)]="usersDK.ThanhPho">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;margin-top: 10px;">
+                    <button mat-raised-button color="primary" (click)="xacNhan(usersDK.TenKH,usersDK.NgaySinh,usersDK.GioiTinh,usersDK.SDT,usersDK.Email,usersDK.DiaChi,usersDK.Phuong,usersDK.Quan,usersDK.ThanhPho,usersDK.MatKhau)" class="button-conf"><mat-icon>done</mat-icon></button>
+                    <button mat-raised-button color="warn" (click)="close()" class="button-conf"><mat-icon>close</mat-icon></button>
+                </div>
+            </div>
+        </mat-card-content>
+       
+    </mat-card> -->
+  </div>

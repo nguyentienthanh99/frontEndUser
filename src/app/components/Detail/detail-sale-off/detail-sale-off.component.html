@@ -1,0 +1,49 @@
+<div class="all">
+    <div class="all">
+        <img [src]="itemKM.AnhKM" alt="" class="Anh">
+    </div>
+    <mat-card class="detail-KM">
+        <div style="font-size: 20px;font-weight: bold;color: #ff0000;">
+            <mat-label>Chương trình {{itemKM.TieuDe}}</mat-label>
+        </div>
+        <div class="flex top20">
+            <div class="width200">
+                <mat-label>Mã khuyến mãi</mat-label>
+            </div>
+            <div>
+                <mat-label class="width30">:</mat-label>
+            </div>
+            <div>
+                <mat-label class="left20">{{itemKM.MaKM}}</mat-label>
+            </div>
+        </div>
+        <div class="flex top20">
+            <div class="width200">
+                <mat-label>Nội dung khuyến mãi</mat-label>
+            </div>
+            <div>
+                <mat-label class="width30">:</mat-label>
+            </div>
+            <div>
+                <mat-label class="left20">giảm <mat-label class="red-text">{{itemKM.GiaTri}}{{itemKM.LoaiKM | LoaiKM}}</mat-label> áp dụng từ <mat-label class="red-text">{{itemKM.ThoiGianBatDau | date:"dd/MM/Y"}}</mat-label> đến <mat-label class="red-text">{{itemKM.ThoiGianKetThuc | date:"dd/MM/Y"}}</mat-label></mat-label>
+            </div>
+        </div>
+        <div class="flex top20">
+            <mat-label>Quý khách hãy nhanh tay đặt cho mình những chiếc bánh ưng ý nhất! Xin chân thành cảm ơn!</mat-label>
+        </div>
+        <div class="flex top20">
+            <mat-label>Chương trình áp dụng cho các sản phẩm dưới đây</mat-label>
+        </div>       
+             
+        <div class="cac-san-pham-cung-loai">
+            <div class="item-san-pham-cung-loai" *ngFor="let item of listBanhKM" (click)="goToDetail(item.MaBanh)">
+                <div>
+                    <img [src]="item.AnhSP" alt="" style="min-width: 300px;max-width: 300px;max-height: 300px;min-height: 300px;">
+                </div>
+                <div style="display: flex;justify-content: center;color: #ff0000;font-size: 16px;font-weight: bold;">
+                    <mat-label>{{item.TenBanh}}</mat-label> 
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

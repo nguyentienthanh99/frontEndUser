@@ -1,0 +1,54 @@
+.all{
+    width: 100%;
+    // height: 100px;
+    margin-top: 30px;
+    background-color: #fa9600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.left{
+ margin-left: 20px;
+}
+
+.color{
+    color: #ffffff;
+}
+
+.border{
+    border-right: 2px solid #ffffff;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.border1{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.loi-cam-on{
+    background-color: #fa9600;
+    color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.content-lco{
+    width: 50%;padding-left: 20px;padding-right: 20px;
+}
+
+.border-lco{
+    border-right: 2px solid #ffffff;
+}
+i{
+    padding-left: 20px;
+}

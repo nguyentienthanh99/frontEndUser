@@ -1,0 +1,93 @@
+<div class="contents">
+    <div class="all-header">
+      <div class="top-header">
+          <div style="margin-left: 20px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              <mat-label>Chào mừng bạn đến với TCake !</mat-label>
+          </div>
+          <div class="flex list-icon">
+              <i class="fab fa-facebook-square"></i>
+              <i class="fab fa-instagram-square"></i>
+              <i class="fab fa-tiktok"></i>
+              <i class="fab fa-twitter"></i>
+              <i class="fas fa-envelope"></i>
+          </div>
+      </div>
+      <div class="header">
+          <div class="logo" (click)="trangChu()">
+              <div>
+              <div>
+                  <mat-label id="name" >TCake</mat-label>
+              </div>
+              <div>
+                  <mat-label id="slogan" >Bánh cho mọi nhà</mat-label> 
+              </div>
+              </div>
+          </div>
+          <div class="search">
+              <!-- <input type="text" matInput style="width: 100%;height: 30px;" placeholder="Tìm kiếm sản phẩm" (Change)="getFillter($event)"> -->
+              <!-- <button mat-raised-button color="warn" style="min-width: 30px;height: 40px;">	<mat-icon>search</mat-icon></button> -->
+              <form class="example-form">
+                <input type="text"
+                       placeholder="Tìm kiếm sản phẩm"
+                       [formControl]="control"
+                       [matAutocomplete]="auto"
+                       style="width: 500px;height: 30px;">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let cake of filteredCake | async" [value]="cake.TenBanh">
+                    {{cake.TenBanh}}
+                  </mat-option>
+                </mat-autocomplete>
+                <button mat-raised-button color="warn" style="min-width: 30px;height: 40px;" (click)="search()"><mat-icon>search</mat-icon></button>
+              </form>
+          </div>
+          
+          <div class="list-menu">
+              
+              <div style="color: #ffffff;display: flex;align-items: center;margin-right: 30px;cursor:pointer;" *ngIf="checkKH" (click)="goToLogin()">
+                  <mat-icon style="font-size: 40px;" routerLink="login">person</mat-icon>
+                  <span style="margin-top: 15px;margin-left: 20px;" routerLink="login">Đăng nhập</span>
+              </div>
+              <div style="color: #ffffff;display: flex;align-items: center;margin-right: 30px;cursor:pointer;" *ngIf="!checkKH">
+                <img [src]="user.Anh" alt="" style="height: 50px;min-width: 50px;max-width: 50px; border: 0.1875em solid #ffffff;border-radius: 50%;-moz-border-radius:50%;-webkit-border-radius:50%;" (click)="goToDetailUser()">
+                <div class="user-login">
+                    <p id="name" (click)="goToDetailUser()">{{user.TenKH}}</p>
+                    <p class="login" (click)="logOut()">Đăng xuất</p>
+                </div>
+            </div>
+              <div style="color: #ffffff;display: flex;align-items: center;margin-right: 30px;cursor:pointer;">
+                  <mat-icon [matBadge]="DemSLBanh" matBadgeColor="warn" style="font-size: 40px;" (click)="goToGioHang()">shopping_cart</mat-icon>
+              </div>
+          </div>
+      </div>
+      <div class="menu">
+          <div style="color: #ffffff;">
+              <button mat-button (click)="trangChu()" class="trang-chu">Trang chủ</button>
+          </div>
+          <div style="color: #ffffff;">
+              <button mat-button [matMenuTriggerFor]="menu" class="san-pham">Sản phẩm</button>
+              <mat-menu #menu="matMenu">
+                  <button mat-menu-item *ngFor="let item of LoaiBanhs" (click)="goToLoaiBanh(item.MaLoaiBanh)">{{item.TenLoaiBanh | upLow}}</button>
+              </mat-menu>
+          </div>
+          <div style="color: #ffffff;">
+              <button mat-button [matMenuTriggerFor]="menuSK" class="su-kien">Sự kiện</button>
+              <mat-menu #menuSK="matMenu">
+                  <button mat-menu-item *ngFor="let item of KhyenMais" (click)="goToDetailSaleOff(item.MaKM)">{{item.TieuDe | upLow}}</button>
+              </mat-menu>
+          </div>
+          <div style="color: #ffffff;">
+            <button mat-button [matMenuTriggerFor]="menuNCC" class="su-kien">Nhà cung cấp</button>
+            <mat-menu #menuNCC="matMenu">
+                <button mat-menu-item *ngFor="let item of listNCC" (click)="goToNCC(item.MaNCC)">{{item.TenNCC | upLow}}</button>
+            </mat-menu>
+        </div>
+      </div>
+    </div>
+    
+  <div class="content" >
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <footer style="height: 100px;"></footer>
+</div> 
